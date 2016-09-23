@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "nohup": "nohup npm start &",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0"
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "throttle": "^1.0.3"
   }
 }
