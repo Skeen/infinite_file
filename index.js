@@ -80,7 +80,8 @@ var send_bytes = function(res, random, num_bytes, throttle_speed)
     }
 }
 
-app.listen(3000, function() 
+var port = 3000;
+app.listen(port, function() 
 {
-    console.log('Example app listening on port 3000!');
+    console.log('Network load server on port: ' + port);
 });
