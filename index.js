@@ -84,7 +84,7 @@ var send_bytes = function(res, random, num_bytes, throttle_speed)
     res.setHeader('Content-Length', num_bytes);
     res.status(200);
 
-    var reply = function(res, buffer)
+    var reply = function(res, buffers)
     {
         if(throttle_speed)
         {
@@ -98,7 +98,8 @@ var send_bytes = function(res, random, num_bytes, throttle_speed)
         }
         else
         {
-            res.end(buffer);
+            	res.send(buffers);
+			res.end();
         }
     }
 
@@ -113,7 +114,14 @@ var send_bytes = function(res, random, num_bytes, throttle_speed)
     else
     {
         res.setHeader('Content-Disposition', 'attachment; filename=' + num_bytes + ".undef");
-        reply(res, new Buffer(num_bytes));
+        var buffers = [];
+		var buffers_needed = num_bytes/1000000000;
+		var buff = new Buffer(num_bytes/buffers_needed);
+		for(var i=0; i < buffers_needed; ++i)
+		{
+			buffers.push(buff);
+		}
+		reply(res, buffers );
     }
 }
 
